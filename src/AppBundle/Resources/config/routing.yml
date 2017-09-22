@@ -1,0 +1,4 @@
+blog:
+    path: /
+    defaults:
+        _controller: AppBundle:Blog:index

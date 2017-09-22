@@ -1,3 +1,2 @@
-app:
-    resource: '@AppBundle/Controller/'
-    type: annotation
+my_bundle:
+    resource: "@AppBundle/Resources/config/routing.yml"
