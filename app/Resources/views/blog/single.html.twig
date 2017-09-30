@@ -1,0 +1,64 @@
+{% extends 'blog-base.html.twig' %}
+
+{% block title %}{{ sitemeta.title }}{% endblock %}
+
+{% block body %}
+<!-- Wrapper -->
+	<div id="wrapper">
+
+		<!-- Main -->
+			<div id="main">
+				<div class="inner">
+
+					<!-- Header -->
+						<header id="header">
+							<a href="#" class="logo"><strong>Editorial</strong> by {{ blog_entry.author_name }}</a>
+							<ul class="icons">
+								<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
+								<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
+								<li><a href="#" class="icon fa-snapchat-ghost"><span class="label">Snapchat</span></a></li>
+								<li><a href="#" class="icon fa-instagram"><span class="label">Instagram</span></a></li>
+								<li><a href="#" class="icon fa-medium"><span class="label">Medium</span></a></li>
+							</ul>
+						</header>
+
+						<!-- Content -->
+							<section>
+								<header class="main">
+									<h1>{{ blog_entry.title }}</h1>
+									<h2>Category: <a href="{{ path('categories_list') }}">{{ blog_entry.category }}</a></h2>
+								</header>
+
+								<span class="image main"><img src="{{ blog_entry.images }}" alt="" /></span>
+
+								<p>{{ blog_entry.content }}</p>
+
+								<hr class="major" />
+								<p>{{ blog_entry.content }}</p>
+
+								<hr class="major" />
+								<p>{{ blog_entry.content }}</p>
+
+								<hr class="major" />
+
+								<date>{{ blog_entry.date }}</date>
+
+							</section>
+
+				</div>
+			</div>
+
+		<!-- Sidebar -->
+			{{ include('blog/sidebar.html.twig') }}
+
+	</div>
+
+{% endblock %}
+
+
+{% block javascripts %}
+	<script src="{{ asset('assets/js/jquery.min.js') }}"></script>
+	<script src="{{ asset('assets/js/skel.min.js') }}"></script>
+	<script src="{{ asset('assets/js/util.js') }}"></script>
+	<script src="{{ asset('assets/js/main.js') }}"></script>
+{% endblock %}

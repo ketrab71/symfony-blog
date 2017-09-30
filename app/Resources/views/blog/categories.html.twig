@@ -12,7 +12,6 @@
 
 					<!-- Header -->
 						<header id="header">
-							<a href="index.html" class="logo"><strong>Editorial</strong> by HTML5 UP</a>
 							<ul class="icons">
 								<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
 								<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
@@ -22,36 +21,16 @@
 							</ul>
 						</header>
 
-					<!-- Banner -->
-						<section id="banner">
-							<div class="content">
-								<header>
-
-									<h1>{{ blog_entries[0].title }}</h1>
-									<p>{{ blog_entries[0].date }}</p>
-								</header>
-								<p>{{ blog_entries[0].description }}</p>
-								<ul class="actions">
-									<li><a href="#" class="button big">Learn More</a></li>
-								</ul>
-							</div>
-							<span class="image object">
-								<img src="{{ asset(blog_entries[0].images) }}" alt="{{ blog_entries[0].title }}" />
-							</span>
-						</section>
-
-
 					<!-- Section -->
 						<section>
 							<header class="major">
-								<h2>Las blog posts</h2>
+								<h2>Categories List</h2>
 							</header>
 							<div class="posts">
-								{% for entry in blog_entries|slice(0, 6) %}
+								{% for category in categories|slice(0, 6) %}
 								<article>
-									<a href="#" class="image"><img src="{{ asset(entry.images) }}" alt="{{ entry.title }}" /></a>
-									<h3>{{ entry.title }}</h3>
-									<p>{{ entry.description }}</p>
+									<a href="#" class="image"><img src="{{ asset(category.images) }}" alt="{{ category.title }}" /></a>
+									<h3>{{ category.title }}</h3>
 									<ul class="actions">
 										<li><a href="{{ path('single_blog', {'slug' : 'dasdasd'}) }}" class="button">More</a></li>
 									</ul>
