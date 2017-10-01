@@ -6,6 +6,7 @@ use Sensio\Bundle\FrameworkExtraBundle\Configuration\Route;
 use Symfony\Bundle\FrameworkBundle\Controller\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use AppBundle\Service\CategoriesHelper;
+use AppBundle\Entity\Posts;
 
 class BlogController extends Controller
 {
@@ -15,7 +16,7 @@ class BlogController extends Controller
     public function indexAction(Request $request, CategoriesHelper $categoriesHelper)
     {
         // replace this example code with whatever you need
-				$posts = array(
+				$postss = array(
 				  array('id' => '1','author_name' => 'Bartosz', 'author_id' => '3','title' => 'Quisquam aperiam nulla sint ipsam et.','description' => 'Dicta et sequi culpa qui doloribus. Minus aut molestias quibusdam veniam. Consequatur perspiciatis sit rem.','content' => 'In eos et doloremque. Quo ipsa est officiis aperiam laborum repudiandae fuga. Eius rerum harum et accusamus enim. Facere dolore ut aspernatur ut at aut. Amet quas debitis quia ut officiis vel.','date' => '1984-08-09', 'images' => 'images/my/krasnal.jpg'),
 				  array('id' => '2','author_name' => 'Bartosz', 'author_id' => '6','title' => 'Nesciunt perspiciatis autem aliquid suscipit quis.','description' => 'Deleniti dolorum fugit sapiente nam quos. Ea illo porro omnis est eum sit nostrum cupiditate. Omnis enim temporibus odio doloremque. Perferendis doloribus sit labore fugit et labore.','content' => 'Incidunt nesciunt esse at vel voluptates unde. Sit quo asperiores porro quo aut at sed aliquid. Atque unde sit quia.','date' => '1976-12-30', 'images' => 'images/my/krasnal.jpg'),
 				  array('id' => '3','author_name' => 'Bartosz', 'author_id' => '11','title' => 'Ratione consequatur dolorum voluptatum voluptatem dolor non cum.','description' => 'Nisi quas saepe sapiente nam doloribus. Minima itaque officia omnis quo aspernatur voluptas quam mollitia. Quod et doloremque officiis magnam esse blanditiis dignissimos. Dolore sint alias corporis fuga incidunt.','content' => 'Quia laboriosam nisi facilis accusamus numquam. Tempore accusantium labore ut corrupti alias. Dolor illum eaque culpa et. Omnis est magnam modi molestiae totam earum sit explicabo.','date' => '2000-10-22', 'images' => 'images/my/krasnal.jpg'),
@@ -39,6 +40,15 @@ class BlogController extends Controller
 
 				);
 
+				$posts = $this->getDoctrine()
+		        ->getRepository(Posts::class)
+		        ->findAll();
+
+		    if (!$posts) {
+		        throw $this->createNotFoundException(
+		            'No posts where found'
+		        );
+		    }
 				$categories = $categoriesHelper->getCategories();
         return $this->render('blog/index.html.twig', [
             'blog_entries' => $posts,
@@ -68,23 +78,19 @@ class BlogController extends Controller
 		 */
 		public function singleAction($slug, CategoriesHelper $categoriesHelper)
 		{
-			$post = array(
-				'id' => '20',
-				'author_name' => 'Bartosz',
-				'author_id' => '18',
-				'category' => 'people',
-				'title' => 'Eaque ut sunt aspernatur quaerat eos consequatur.',
-				'description' => 'Illum laborum sed magni dolore non consequuntur qui. Sint id laudantium officiis nemo voluptatem. Nesciunt harum sunt quam. Omnis voluptas eveniet quo numquam inventore.',
-				'content' => 'Quasi et et quia. Quia voluptatem nesciunt recusandae sed dolorem modi. Quae atque perspiciatis sed at et consequatur commodi. Delectus ab nulla neque minima.',
-				'date' => '1990-11-05',
-				 'images' => 'images/my/krasnal.jpg'
-			);
+
+			$post = $this->getDoctrine()
+					->getRepository(Posts::class)
+					->findOneBy(
+					    array('id' => '1')
+					);
+
 			$categories = $categoriesHelper->getCategories();
 			return $this->render('blog/single.html.twig', [
 					'blog_entry' => $post,
 					'categories' => $categories,
 					'sitemeta' => array(
-						'title' => $post['title']
+						'title' => $post->getTitle()
 					)
 			]);
 

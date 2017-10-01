@@ -28,11 +28,11 @@
 								<header>
 
 									<h1>{{ blog_entries[0].title }}</h1>
-									<p>{{ blog_entries[0].date }}</p>
+
 								</header>
 								<p>{{ blog_entries[0].description }}</p>
 								<ul class="actions">
-									<li><a href="#" class="button big">Learn More</a></li>
+									<li><a href="{{ path('single_blog', {'slug' : 'dasdasd'}) }}" class="button big">Learn More</a></li>
 								</ul>
 							</div>
 							<span class="image object">
@@ -47,7 +47,7 @@
 								<h2>Las blog posts</h2>
 							</header>
 							<div class="posts">
-								{% for entry in blog_entries|slice(0, 6) %}
+								{% for entry in blog_entries|slice(1, 6) %}
 								<article>
 									<a href="#" class="image"><img src="{{ asset(entry.images) }}" alt="{{ entry.title }}" /></a>
 									<h3>{{ entry.title }}</h3>

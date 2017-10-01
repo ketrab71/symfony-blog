@@ -12,7 +12,7 @@
 
 					<!-- Header -->
 						<header id="header">
-							<a href="#" class="logo"><strong>Editorial</strong> by {{ blog_entry.author_name }}</a>
+							<a href="#" class="logo"><strong>Editorial</strong> by Bartosz</a>
 							<ul class="icons">
 								<li><a href="#" class="icon fa-twitter"><span class="label">Twitter</span></a></li>
 								<li><a href="#" class="icon fa-facebook"><span class="label">Facebook</span></a></li>
@@ -26,7 +26,7 @@
 							<section>
 								<header class="main">
 									<h1>{{ blog_entry.title }}</h1>
-									<h2>Category: <a href="{{ path('categories_list') }}">{{ blog_entry.category }}</a></h2>
+									
 								</header>
 
 								<span class="image main"><img src="{{ blog_entry.images }}" alt="" /></span>
@@ -39,9 +39,6 @@
 								<hr class="major" />
 								<p>{{ blog_entry.content }}</p>
 
-								<hr class="major" />
-
-								<date>{{ blog_entry.date }}</date>
 
 							</section>
 
